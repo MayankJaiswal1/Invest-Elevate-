@@ -1,0 +1,18 @@
+.section {
+    -fx-padding: 20;
+    -fx-border-style: solid inside;
+    -fx-border-width: 2;
+    -fx-border-color: #000000;
+    -fx-background-color: #f9f9f9;
+}
+
+.title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+.text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
