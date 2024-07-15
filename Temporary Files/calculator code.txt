@@ -1,0 +1,83 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class SIPCalculator extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        // UI elements
+        Label sipAmountLabel = new Label("SIP Amount:");
+        TextField sipAmountField = new TextField();
+
+        Label interestRateLabel = new Label("Interest Rate (%):");
+        TextField interestRateField = new TextField();
+
+        Label investmentPeriodLabel = new Label("Investment Period (Years):");
+        TextField investmentPeriodField = new TextField();
+
+        Label maturityAmountLabel = new Label("Maturity Amount:");
+        Label maturityAmountValue = new Label(); // To display calculated amount
+
+        Button calculateButton = new Button("Calculate");
+
+        // Event handler for calculate button
+        calculateButton.setOnAction(event -> {
+            // Get user input and convert to appropriate data types
+            double sipAmount = Double.parseDouble(sipAmountField.getText());
+            double interestRate = Double.parseDouble(interestRateField.getText());
+            int investmentPeriod = Integer.parseInt(investmentPeriodField.getText());
+
+            // Call your method to calculate maturity amount
+            double maturityAmount = calculateMaturityAmount(sipAmount, interestRate, investmentPeriod);
+
+            // Update maturity amount label
+            maturityAmountValue.setText(String.valueOf(maturityAmount));
+        });
+
+        // Layout and scene setup
+        VBox root = new VBox();
+        root.getChildren().addAll(sipAmountLabel, sipAmountField, interestRateLabel, interestRateField,
+                investmentPeriodLabel, investmentPeriodField, calculateButton, maturityAmountLabel, maturityAmountValue);
+        Scene scene = new Scene(root, 300, 250);
+
+        // Set stage properties and display
+        primaryStage.setTitle("SIP Calculator");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    // Replace this with your actual calculation logic
+    private double calculateMaturityAmount(double sipAmount, double interestRate, int investmentPeriod) {
+        // Convert interest rate to decimal format
+        double monthlyInterestRate = interestRate / 100 / 12; 
+    
+        // Calculate number of months in investment period
+        int totalMonths = investmentPeriod * 12;
+    
+        // Initialize maturity amount to 0
+        double maturityAmount = 0.0;
+    
+        // Use a loop to simulate monthly SIP contributions and calculate growing amount
+        for (int month = 1; month <= totalMonths; month++) {
+            // Add current month's SIP contribution
+            maturityAmount += sipAmount;
+    
+            // Calculate interest earned on accumulated amount
+            double interest = maturityAmount * monthlyInterestRate;
+    
+            // Add interest earned to maturity amount (considering compounding)
+            maturityAmount += interest;
+        }
+    
+        return maturityAmount;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
