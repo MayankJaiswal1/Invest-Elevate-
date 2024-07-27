@@ -82,6 +82,8 @@ and many more.
 
 3. API Binding: Used API Binding to authenticate user credentials from Firebase.
 
+
+
 🌟 Delighted🎖️
 
 
