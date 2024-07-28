@@ -104,3 +104,4 @@ and many more.
 *Firebase Integration* : Implemented as our backend solution for secure and scalable data storage, Firebase ensures seamless data synchronization across devices and robust data management capabilities.
 
 
+
